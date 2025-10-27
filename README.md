@@ -4,9 +4,9 @@ Sitio web para Nativo Arte Jewelry - Joyería Artesanal de Autor
 
 ## Características
 
-- Hero full screen optimizado para todos los dispositivos
-- Diseño minimalista y artístico
-- Soporte multi-idioma (Español/Inglés)
+- Hero ful artístico
+- Soporte multi-idioma (Españoll screen optimizado para todos los dispositivos
+- Diseño minimalista y/Inglés)
 - Secciones enfocadas en descubrimiento y posicionamiento
 - Optimizado para mercados internacionales (Dubai)
 
@@ -17,11 +17,4 @@ Sitio web para Nativo Arte Jewelry - Joyería Artesanal de Autor
 - Tailwind CSS
 - Framer Motion
 
-## Desarrollo
 
-```bash
-npm install
-npm run dev
-```
-
-El servidor se inicia en el puerto 3010.

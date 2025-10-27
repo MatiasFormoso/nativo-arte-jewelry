@@ -168,9 +168,9 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block transition-all duration-300 py-4 px-3 text-sm tracking-wide ${
+                className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide ${
                   showWhiteHeader
-                    ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]'
+                    ? 'text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5'
                     : 'text-white hover:text-white/80'
                 }`}
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
@@ -180,17 +180,32 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               </Link>
             ))}
             
+            <Link
+              href={`/${locale}/contacto`}
+              className={`block transition-all duration-300 py-3 px-3 mx-3 rounded-sm text-sm tracking-wide border mt-4 ${
+                showWhiteHeader
+                  ? 'border-[#D4AF37]/40 text-[#1A1A1A] hover:border-[#D4AF37] hover:bg-[#D4AF37]/5'
+                  : 'border-white/30 text-white hover:border-white/60'
+              }`}
+              style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contactar
+            </Link>
+            
             <div className={`px-3 pt-4 border-t ${showWhiteHeader ? 'border-[#D4AF37]/10' : 'border-white/20'}`}>
               <LocaleSwitcher />
             </div>
 
-            <div className="px-3 pt-4 flex items-center space-x-4">
+            <div className="px-3 pt-4 flex items-center space-x-6">
               <a
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-3 transition-all ${
-                  showWhiteHeader ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]' : 'text-white hover:text-white/80'
+                className={`p-3 rounded-full transition-all ${
+                  showWhiteHeader 
+                    ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10' 
+                    : 'text-white hover:text-white/80'
                 }`}
               >
                 <Instagram className="w-6 h-6" />
