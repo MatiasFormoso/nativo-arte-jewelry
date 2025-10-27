@@ -30,7 +30,7 @@ export default function LayoutWrapper({ children, t, locale }: LayoutWrapperProp
         {children}
       </main>
       <Footer t={t} locale={locale} />
-      <WhatsAppButton />
+      <WhatsAppButton locale={locale} />
     </>
   );
 }

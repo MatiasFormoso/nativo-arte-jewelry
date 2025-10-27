@@ -108,7 +108,11 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               href="https://www.instagram.com/nativo_arte_jewelry/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-white/80 hover:text-white transition-all duration-200"
+              className={`p-2 transition-all duration-200 ${
+                showWhiteHeader
+                  ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]'
+                  : 'text-white/80 hover:text-white'
+              }`}
             >
               <Instagram className="w-5 h-5" />
             </a>
@@ -127,40 +131,48 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
 
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className={`md:hidden p-2 rounded-lg transition-colors ${
+              showWhiteHeader ? 'hover:bg-gray-100' : 'hover:bg-white/10'
+            }`}
             aria-label="Abrir menú"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span
-                className={`block w-5 h-0.5 bg-white transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-                }`}
+                className={`block w-5 h-0.5 transition-all duration-300 ${
+                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
+                } ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${
-                  isMenuOpen ? 'opacity-0' : ''
-                }`}
+                className={`block w-5 h-0.5 transition-all duration-300 mt-1 ${
+                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
+                } ${isMenuOpen ? 'opacity-0' : ''}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-                }`}
+                className={`block w-5 h-0.5 transition-all duration-300 mt-1 ${
+                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
+                } ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}
               />
             </div>
           </button>
         </div>
 
         <div
-          className={`md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/20 shadow-lg transition-all duration-300 ${
-            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
+          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-lg shadow-lg transition-all duration-300 ${
+            showWhiteHeader 
+              ? 'bg-white/95 border-b border-[#D4AF37]/10' 
+              : 'bg-black/95 border-b border-white/20'
+          } ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         >
           <div className="px-4 py-6 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block text-white hover:text-white/80 transition-all duration-300 py-4 px-3 text-sm tracking-wide"
+                className={`block transition-all duration-300 py-4 px-3 text-sm tracking-wide ${
+                  showWhiteHeader
+                    ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]'
+                    : 'text-white hover:text-white/80'
+                }`}
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -168,7 +180,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               </Link>
             ))}
             
-            <div className="px-3 pt-4 border-t border-white/20">
+            <div className={`px-3 pt-4 border-t ${showWhiteHeader ? 'border-[#D4AF37]/10' : 'border-white/20'}`}>
               <LocaleSwitcher />
             </div>
 
@@ -177,7 +189,9 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 text-white hover:text-white/80 transition-all"
+                className={`p-3 transition-all ${
+                  showWhiteHeader ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]' : 'text-white hover:text-white/80'
+                }`}
               >
                 <Instagram className="w-6 h-6" />
               </a>

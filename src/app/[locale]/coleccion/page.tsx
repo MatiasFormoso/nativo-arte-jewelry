@@ -77,7 +77,7 @@ export default async function CollectionPage({ params }: Props) {
             href={`/${locale}/contacto`}
             className="border border-[#D4AF37]/40 hover:border-[#D4AF37] text-[#1A1A1A] hover:text-[#D4AF37] px-8 sm:px-10 py-3.5 text-xs font-light tracking-[0.2em] uppercase transition-all duration-200 inline-block"
           >
-            Explorar Proyectos
+            Más Información
           </Link>
         </div>
       </div>

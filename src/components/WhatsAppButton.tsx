@@ -2,10 +2,22 @@
 
 import { MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import type { Locale } from '@/i18n/config';
 
-export default function WhatsAppButton() {
-  const phoneNumber = '+971 55 577 0098';
-  const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\s/g, '')}`;
+type WhatsAppButtonProps = {
+  locale: Locale;
+};
+
+export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
+  const phoneNumber = '971555770098';
+  
+  const messages = {
+    es: '¡Hola! Me interesa conocer más sobre las joyas exclusivas de Nativo Arte Jewelry. ¿Podríais brindarme más información sobre vuestras colecciones?',
+    en: 'Hello! I am interested in learning more about the exclusive jewelry from Nativo Arte Jewelry. Could you provide me with more information about your collections?'
+  };
+  
+  const message = encodeURIComponent(messages[locale] || messages.es);
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (
     <motion.a
