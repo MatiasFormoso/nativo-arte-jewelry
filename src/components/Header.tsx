@@ -41,10 +41,10 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   const showWhiteHeader = hasScrolled || !isOnHero;
 
   return (
-    <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
+    <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       showWhiteHeader 
-        ? 'bg-white/80 border-b border-[#D4AF37]/10' 
-        : 'bg-white/5 border-b border-white/10'
+        ? 'bg-white/95 backdrop-blur-md border-b border-[#D4AF37]/10 shadow-sm' 
+        : 'bg-white/5 backdrop-blur-md border-b border-white/10'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
@@ -157,22 +157,16 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
         </div>
 
         <div
-          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-lg shadow-lg transition-all duration-300 ${
-            showWhiteHeader 
-              ? 'bg-white/95 border-b border-[#D4AF37]/10' 
-              : 'bg-black/95 border-b border-white/20'
-          } ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+          className={`md:hidden absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 ${
+            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
         >
           <div className="px-4 py-6 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide ${
-                  showWhiteHeader
-                    ? 'text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5'
-                    : 'text-white hover:text-white/80'
-                }`}
+                className="block text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 text-sm tracking-wide"
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -182,18 +176,14 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             
             <Link
               href={`/${locale}/contacto`}
-              className={`block transition-all duration-300 py-3 px-3 mx-3 rounded-sm text-sm tracking-wide border mt-4 ${
-                showWhiteHeader
-                  ? 'border-[#D4AF37]/40 text-[#1A1A1A] hover:border-[#D4AF37] hover:bg-[#D4AF37]/5'
-                  : 'border-white/30 text-white hover:border-white/60'
-              }`}
+              className="block border border-[#D4AF37]/40 text-[#1A1A1A] hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 mx-3 rounded-sm text-sm tracking-wide border mt-4"
               style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
               onClick={() => setIsMenuOpen(false)}
             >
               Contactar
             </Link>
             
-            <div className={`px-3 pt-4 border-t ${showWhiteHeader ? 'border-[#D4AF37]/10' : 'border-white/20'}`}>
+            <div className="px-3 pt-4 border-t border-[#D4AF37]/10">
               <LocaleSwitcher />
             </div>
 
@@ -202,11 +192,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-3 rounded-full transition-all ${
-                  showWhiteHeader 
-                    ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10' 
-                    : 'text-white hover:text-white/80'
-                }`}
+                className="p-3 rounded-full text-[#1A1A1A]/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all"
               >
                 <Instagram className="w-6 h-6" />
               </a>
