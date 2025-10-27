@@ -55,7 +55,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
           >
             <Link
               href={`/${locale}`}
-              className={`text-xl sm:text-2xl transition-all duration-200 ${
+              className={`text-xl sm:text-2xl md:text-2xl transition-all duration-200 ${
                 showWhiteHeader
                   ? 'text-[#1A1A1A] hover:text-[#D4AF37]'
                   : 'text-white hover:text-white/90'
