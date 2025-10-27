@@ -214,7 +214,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             </Link>
             
             <div className="px-3 pt-4 border-t border-[#D4AF37]/10">
-              <LocaleSwitcher />
+              <LocaleSwitcher variant="mobile" />
             </div>
 
             <div className="px-3 pt-4 flex items-center space-x-6">

@@ -4,7 +4,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function LocaleSwitcher() {
+type LocaleSwitcherProps = {
+  variant?: 'desktop' | 'mobile';
+};
+
+export default function LocaleSwitcher({ variant = 'desktop' }: LocaleSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -17,7 +21,11 @@ export default function LocaleSwitcher() {
   return (
     <motion.button
       onClick={toggleLocale}
-      className="p-2 text-white/80 hover:text-white transition-all duration-200"
+      className={`p-2 transition-all duration-200 ${
+        variant === 'mobile' 
+          ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]' 
+          : 'text-white/80 hover:text-white'
+      }`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
