@@ -17,14 +17,31 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
+  // Alternativa 3: Usar Intersection Observer para detectar cuando salimos del hero
   useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 50);
-    };
+    const heroElement = document.getElementById('hero');
+    if (!heroElement || !isOnHero) return;
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Si el hero está fuera de la vista (isIntersecting = false), estamos scrolleando
+          setHasScrolled(!entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-80px 0px 0px 0px', // Offset para el header
+        threshold: 0
+      }
+    );
+    
+    observer.observe(heroElement);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, [isOnHero]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,14 +54,15 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
     { name: t.nav.contact, href: `/${locale}/contacto` },
   ];
 
-  // Show white header when scrolling or on non-hero pages
-  // In mobile, force white header after scrolling to ensure visibility
+  // Header debe ser blanco:
+  // - Si scrolleamos en cualquier página
+  // - Si estamos en una página sin hero
   const showWhiteHeader = hasScrolled || !isOnHero;
 
   return (
     <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       showWhiteHeader 
-        ? 'bg-white/95 backdrop-blur-md border-b border-[#D4AF37]/10 shadow-sm' 
+        ? 'bg-white backdrop-blur-md border-b border-[#D4AF37]/10 shadow-sm' 
         : 'bg-white/5 backdrop-blur-md border-b border-white/10'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -54,22 +72,30 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className={`text-xl sm:text-2xl md:text-2xl transition-all duration-200 ${
-                showWhiteHeader
-                  ? 'text-[#1A1A1A]'
-                  : 'text-white'
-              }`}
-              style={{ fontFamily: "'Great Vibes', cursive" }}
-              whileHover={{ scale: 1.02 }}
+            <Link
+              href={`/${locale}`}
+              className="text-xl sm:text-2xl transition-all duration-200"
+              style={{ 
+                fontFamily: "'Great Vibes', cursive",
+                color: showWhiteHeader ? '#1A1A1A' : '#FFFFFF'
+              }}
+              onMouseEnter={(e) => {
+                if (showWhiteHeader) {
+                  e.currentTarget.style.color = '#D4AF37';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = showWhiteHeader ? '#1A1A1A' : '#FFFFFF';
+              }}
             >
-              <Link
-                href={`/${locale}`}
-                className="block"
+              <motion.span
+                style={{ fontFamily: "'Great Vibes', cursive" }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
                 Nativo Arte
-              </Link>
-            </motion.div>
+              </motion.span>
+            </Link>
           </motion.div>
           
           <motion.div 
@@ -131,26 +157,30 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
 
           <button
             onClick={toggleMenu}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              showWhiteHeader ? 'hover:bg-gray-100' : 'hover:bg-white/10'
-            }`}
+            className="md:hidden p-2 rounded-lg transition-colors hover:bg-gray-100"
             aria-label="Abrir menú"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span
-                className={`block w-5 h-0.5 transition-all duration-300 ${
-                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
-                } ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
+                className="block w-5 h-0.5 transition-all duration-300"
+                style={{ 
+                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  transform: isMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none'
+                }}
               />
               <span
-                className={`block w-5 h-0.5 transition-all duration-300 mt-1 ${
-                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
-                } ${isMenuOpen ? 'opacity-0' : ''}`}
+                className="block w-5 h-0.5 mt-1 transition-all duration-300"
+                style={{ 
+                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  opacity: isMenuOpen ? 0 : 1
+                }}
               />
               <span
-                className={`block w-5 h-0.5 transition-all duration-300 mt-1 ${
-                  showWhiteHeader ? 'bg-[#1A1A1A]' : 'bg-white'
-                } ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}
+                className="block w-5 h-0.5 mt-1 transition-all duration-300"
+                style={{ 
+                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  transform: isMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none'
+                }}
               />
             </div>
           </button>
