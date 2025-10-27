@@ -206,26 +206,23 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             
             <Link
               href={`/${locale}/contacto`}
-              className="block border border-[#D4AF37]/40 text-[#1A1A1A] hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 mx-3 rounded-sm text-sm tracking-wide border mt-4"
+              className="block text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 text-sm tracking-wide"
               style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
               onClick={() => setIsMenuOpen(false)}
             >
               Contactar
             </Link>
             
-            <div className="px-3 pt-4 border-t border-[#D4AF37]/10">
-              <LocaleSwitcher variant="mobile" />
-            </div>
-
-            <div className="px-3 pt-4 flex items-center space-x-6">
+            <div className="px-3 pt-4 border-t border-[#D4AF37]/10 flex items-center justify-between">
               <a
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full text-[#1A1A1A]/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all"
               >
-                <Instagram className="w-6 h-6" />
+                <Instagram className="w-5 h-5" />
               </a>
+              <LocaleSwitcher variant="mobile" />
             </div>
           </div>
         </div>
