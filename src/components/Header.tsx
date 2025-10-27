@@ -54,24 +54,22 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Link
-              href={`/${locale}`}
+            <motion.div
               className={`text-xl sm:text-2xl md:text-2xl transition-all duration-200 ${
                 showWhiteHeader
-                  ? 'text-[#1A1A1A] hover:text-[#D4AF37]'
-                  : 'text-white hover:text-white/90'
+                  ? 'text-[#1A1A1A]'
+                  : 'text-white'
               }`}
               style={{ fontFamily: "'Great Vibes', cursive" }}
+              whileHover={{ scale: 1.02 }}
             >
-              <motion.span
-                className={showWhiteHeader ? 'text-[#1A1A1A]' : 'text-white'}
-                style={{ fontFamily: "'Great Vibes', cursive" }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
+              <Link
+                href={`/${locale}`}
+                className="block"
               >
                 Nativo Arte
-              </motion.span>
-            </Link>
+              </Link>
+            </motion.div>
           </motion.div>
           
           <motion.div 
