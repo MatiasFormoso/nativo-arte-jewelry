@@ -38,6 +38,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   ];
 
   // Show white header when scrolling or on non-hero pages
+  // In mobile, force white header after scrolling to ensure visibility
   const showWhiteHeader = hasScrolled || !isOnHero;
 
   return (
@@ -63,6 +64,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               style={{ fontFamily: "'Great Vibes', cursive" }}
             >
               <motion.span
+                className={showWhiteHeader ? 'text-[#1A1A1A]' : 'text-white'}
                 style={{ fontFamily: "'Great Vibes', cursive" }}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
