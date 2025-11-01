@@ -94,9 +94,8 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 color: '#8B7355',
                 fontWeight: 'normal',
                 letterSpacing: '0.02em',
-                WebkitTextStroke: showWhiteHeader ? 'none' : '0.5px rgba(255,255,255,0.7)',
-                paintOrder: showWhiteHeader ? 'normal' : 'stroke fill',
-                textShadow: showWhiteHeader ? 'none' : '0 0 5px rgba(255,255,255,0.4), 0 0 9px rgba(255,255,255,0.2)'
+                WebkitTextStroke: showWhiteHeader ? 'none' : '0.3px rgba(255,255,255,0.7)',
+                paintOrder: showWhiteHeader ? 'normal' : 'stroke fill'
               } as React.CSSProperties}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = '#9B8365';
@@ -148,7 +147,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 </Link>
               </motion.div>
             ))}
-            <LocaleSwitcher />
+            <LocaleSwitcher showWhiteHeader={showWhiteHeader} />
             <a
               href="https://www.instagram.com/nativo_arte_jewelry/"
               target="_blank"
@@ -212,17 +211,25 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
         </div>
 
         <div
-          className={`md:hidden absolute top-full left-0 right-0 bg-[#F9F5EF]/98 shadow-lg border-b border-[#8B7355]/10 transition-all duration-300 ${
+          className={`md:hidden absolute top-full left-0 right-0 shadow-lg transition-all duration-300 ${
+            showWhiteHeader 
+              ? 'bg-[#F9F5EF]/98 border-b border-[#8B7355]/10' 
+              : 'bg-black/20 md:backdrop-blur-sm border-b border-white/20'
+          } ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
-          style={{ backdropFilter: 'none', WebkitBackdropFilter: 'none' }}
+          style={isMobile ? { backdropFilter: 'none', WebkitBackdropFilter: 'none' } : {}}
         >
           <div className="px-4 py-6 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light"
+                className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light ${
+                  showWhiteHeader
+                    ? 'text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
+                    : 'text-white/95 hover:text-white hover:bg-white/10'
+                }`}
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -232,23 +239,33 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             
             <Link
               href={`/${locale}/contacto`}
-              className="block text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light"
+              className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light ${
+                showWhiteHeader
+                  ? 'text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
+                  : 'text-white/95 hover:text-white hover:bg-white/10'
+              }`}
               style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
               onClick={() => setIsMenuOpen(false)}
             >
               Contactar
             </Link>
             
-            <div className="px-3 pt-4 border-t border-[#8B7355]/15 flex items-center justify-between">
+            <div className={`px-3 pt-4 border-t flex items-center justify-between ${
+              showWhiteHeader ? 'border-[#8B7355]/15' : 'border-white/20'
+            }`}>
               <a
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full text-[#8B7355]/70 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300"
+                className={`p-3 rounded-full transition-all duration-300 ${
+                  showWhiteHeader
+                    ? 'text-[#8B7355]/70 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
+                    : 'text-white/90 hover:text-white hover:bg-white/10'
+                }`}
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <LocaleSwitcher variant="mobile" />
+              <LocaleSwitcher variant="mobile" showWhiteHeader={showWhiteHeader} />
             </div>
           </div>
         </div>

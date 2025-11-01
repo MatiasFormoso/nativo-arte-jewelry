@@ -6,9 +6,10 @@ import { motion } from 'framer-motion';
 
 type LocaleSwitcherProps = {
   variant?: 'desktop' | 'mobile';
+  showWhiteHeader?: boolean;
 };
 
-export default function LocaleSwitcher({ variant = 'desktop' }: LocaleSwitcherProps) {
+export default function LocaleSwitcher({ variant = 'desktop', showWhiteHeader = false }: LocaleSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -18,14 +19,24 @@ export default function LocaleSwitcher({ variant = 'desktop' }: LocaleSwitcherPr
     router.push(newPath);
   };
 
+  // Determinar colores según el contexto
+  const getColorClasses = () => {
+    if (variant === 'mobile') {
+      return showWhiteHeader
+        ? 'text-[#8B7355]/70 hover:text-[#8B7355]'
+        : 'text-white/90 hover:text-white';
+    } else {
+      // Desktop
+      return showWhiteHeader
+        ? 'text-[#8B7355]/70 hover:text-[#8B7355]'
+        : 'text-white/90 hover:text-white';
+    }
+  };
+
   return (
     <motion.button
       onClick={toggleLocale}
-      className={`p-2 transition-all duration-200 ${
-        variant === 'mobile' 
-          ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]' 
-          : 'text-white/80 hover:text-white'
-      }`}
+      className={`p-2 transition-all duration-200 ${getColorClasses()}`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >

@@ -1,8 +1,8 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { Dict, Locale } from '@/i18n/config';
 
 type GallerySectionProps = { t: Dict; locale: Locale };
@@ -19,11 +19,13 @@ const modelImages = [
 
 export default function GallerySection({ t, locale }: GallerySectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % modelImages.length);
-    }, 4000); // Cambia cada 4 segundos
+    }, 5000); // Cambia cada 5 segundos para más elegancia
 
     return () => clearInterval(interval);
   }, []);
@@ -46,7 +48,7 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
   };
 
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#F9F5EF] relative overflow-hidden">
+    <section ref={ref} className="py-20 sm:py-28 md:py-32 bg-[#F9F5EF] relative overflow-hidden">
       {/* Textura de pinceladas sutiles */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute top-20 left-0 w-[35%] h-[50%] bg-gradient-to-br from-[#D4AF37]/12 via-transparent to-transparent blur-3xl"></div>
@@ -57,14 +59,19 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="text-center mb-16 md:mb-20">
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#8B6914] mb-6 italic font-medium">
             Inspiración
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[#1A1A1A]/60 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-base sm:text-lg md:text-xl text-[#8B7355]/70 max-w-3xl mx-auto leading-relaxed px-4">
             Descubre cómo nuestras piezas cobran vida en cada momento especial
           </p>
-        </div>
+        </motion.div>
 
         {/* Carrusel */}
         <div className="relative overflow-hidden">
@@ -72,23 +79,23 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
             {getVisibleImages().map((item, idx) => (
               <motion.div
                 key={`${currentIndex}-${item.index}`}
-                initial={{ opacity: 0, x: idx === 0 ? -30 : idx === 3 ? 30 : 0, scale: 0.95 }}
+                initial={{ opacity: 0, x: idx === 0 ? -20 : idx === 3 ? 20 : 0, scale: 0.96 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ 
-                  duration: 0.6,
+                  duration: 0.4,
                   ease: [0.25, 0.1, 0.25, 1],
-                  delay: idx * 0.1
+                  delay: idx * 0.05
                 }}
-                  className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#D4AF37]/20 hover:border-[#D4AF37]/50 transition-all duration-500 shadow-md hover:shadow-xl"
+                className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#8B7355]/20 hover:border-[#8B7355]/40 transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 <Image
                   src={item.src}
                   alt={`Modelo con joyas ${item.index + 1}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
                   sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#D4AF37]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </div>
@@ -99,10 +106,10 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-1.5 transition-all duration-300 ${
+                className={`h-1.5 transition-all duration-200 rounded-full ${
                   index === currentIndex 
-                    ? 'w-8 bg-[#D4AF37]' 
-                    : 'w-1.5 bg-[#D4AF37]/30 hover:bg-[#D4AF37]/50'
+                    ? 'w-8 bg-[#8B7355]' 
+                    : 'w-1.5 bg-[#8B7355]/30 hover:bg-[#8B7355]/50'
                 }`}
                 aria-label={`Ir a imagen ${index + 1}`}
               />
