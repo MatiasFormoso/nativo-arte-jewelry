@@ -58,7 +58,7 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
                 fontWeight: 'normal',
                 color: '#8B7355',
                 letterSpacing: '0.02em',
-                WebkitTextStroke: '1.5px rgba(255,255,255,0.7)',
+                WebkitTextStroke: '0.80px rgba(255,255,255,0.7)',
                 paintOrder: 'stroke fill',
                 textShadow: '0 0 8px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2)'
               } as React.CSSProperties}
@@ -73,7 +73,7 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
                 display: 'inline-block',
                 letterSpacing: '0',
                 marginRight: '-0.08em',
-                WebkitTextStroke: '1.5px rgba(255,255,255,0.7)',
+                WebkitTextStroke: '0.80px rgba(255,255,255,0.7)',
                 paintOrder: 'stroke fill',
                 textShadow: '0 0 8px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2)',
                 fontSize: '1em',
