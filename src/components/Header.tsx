@@ -86,7 +86,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
       WebkitBackdropFilter: 'none'
     } : {}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+        <div className="flex items-center justify-between h-24 sm:h-28 md:h-32">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -108,8 +108,8 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 className="relative"
                 style={{
                   filter: showWhiteHeader 
-                    ? 'brightness(0.68) contrast(1.28)'
-                    : 'brightness(0.68) contrast(1.28) drop-shadow(0 0 4px rgba(255,255,255,0.4))'
+                    ? 'brightness(0.66) contrast(1.3)'
+                    : 'brightness(0.66) contrast(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4))'
                 }}
               >
                 <Image
@@ -117,7 +117,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                   alt="Nativo Arte"
                   width={200}
                   height={50}
-                  className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto"
+                  className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto"
                   style={{ objectFit: 'contain' }}
                   priority
                   quality={90}
