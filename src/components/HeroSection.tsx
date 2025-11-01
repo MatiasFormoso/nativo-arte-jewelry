@@ -43,7 +43,7 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
           </motion.div>
           
           <motion.h1 
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 md:mb-8"
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl mb-6 md:mb-8"
             style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 'normal' }}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}

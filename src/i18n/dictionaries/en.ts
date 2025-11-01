@@ -15,7 +15,7 @@ const en: Dict = {
 
   hero: {
     badge: "Authentic Art",
-    title: "Nativo Arte Jewelry",
+    title: "Nativo Arte",
     subtitle: "Unique jewelry that tells stories",
     ctaPrimary: "Explore",
     ctaSecondary: "Contact",
