@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Mail } from 'lucide-react';
 import LocaleSwitcher from './LocaleSwitcher';
@@ -75,14 +76,14 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
       showWhiteHeader 
         ? 'bg-[#F9F5EF]/95 md:backdrop-blur-md border-b border-[#8B7355]/15 shadow-sm' 
         : isMenuOpen
-          ? 'bg-black/30 backdrop-blur-lg border-b border-white/20'
-          : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
+          ? 'bg-white/60 backdrop-blur-lg border-b border-white/30'
+          : 'bg-white/50 md:backdrop-blur-md border-b border-white/20'
     }`} style={isMobile && !showWhiteHeader && isMenuOpen ? { 
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)'
-    } : isMobile ? { 
-      backdropFilter: 'none',
-      WebkitBackdropFilter: 'none'
+    } : isMobile && !showWhiteHeader ? { 
+      backdropFilter: 'blur(8px)',
+      WebkitBackdropFilter: 'blur(8px)'
     } : {}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
@@ -93,45 +94,35 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
           >
             <Link
               href={`/${locale}`}
-              className="text-2xl sm:text-3xl md:text-4xl transition-all duration-300"
-              style={{ 
-                fontFamily: "'Great Vibes', cursive",
-                color: '#8B7355',
-                fontWeight: 'normal',
-                letterSpacing: '0.02em',
-                WebkitTextStroke: showWhiteHeader ? 'none' : '0.3px rgba(255,255,255,0.7)',
-                paintOrder: showWhiteHeader ? 'normal' : 'stroke fill'
-              } as React.CSSProperties}
+              className="transition-all duration-300"
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#9B8365';
                 e.currentTarget.style.transform = 'scale(1.02)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#8B7355';
                 e.currentTarget.style.transform = 'scale(1)';
               }}
             >
-              <motion.span
-                style={{ fontFamily: "'Great Vibes', cursive" }}
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
+                className="relative"
+                style={{
+                  filter: showWhiteHeader 
+                    ? 'brightness(0.68) contrast(1.28)'
+                    : 'brightness(0.68) contrast(1.28) drop-shadow(0 0 4px rgba(255,255,255,0.4))'
+                }}
               >
-                <span style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  fontWeight: 'normal',
-                  fontStyle: 'normal',
-                  display: 'inline-block',
-                  letterSpacing: '0',
-                  marginRight: '-0.08em',
-                  WebkitTextStroke: showWhiteHeader ? 'none' : '0.3px rgba(255,255,255,0.7)',
-                  paintOrder: showWhiteHeader ? 'normal' : 'stroke fill',
-                  fontSize: '1em',
-                  lineHeight: '1',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  textRendering: 'optimizeLegibility'
-                }}>N</span>ativo Arte
-              </motion.span>
+                <Image
+                  src="/images/logo/logoNativo.png"
+                  alt="Nativo Arte"
+                  width={200}
+                  height={50}
+                  className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto"
+                  style={{ objectFit: 'contain' }}
+                  priority
+                  quality={90}
+                />
+              </motion.div>
             </Link>
           </motion.div>
           

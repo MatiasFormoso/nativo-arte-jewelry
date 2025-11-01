@@ -8,6 +8,8 @@ import type { Dict, Locale } from '@/i18n/config';
 type HeroSectionProps = { t: Dict; locale: Locale };
 
 export default function HeroSection({ t, locale }: HeroSectionProps) {
+  const logoFilter = 'brightness(0.68) contrast(1.28) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2))';
+
   return (
     <section id="hero" className="relative overflow-hidden min-h-screen flex items-center">
       <Image
@@ -23,7 +25,7 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
       />
       
       {/* Overlay simple sin efectos */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/5 to-black/15" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/8 via-transparent to-[#D4AF37]/5" />
       
       {/* Contenido */}
@@ -44,62 +46,41 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
             </motion.div>
           </motion.div>
           
-          <motion.h1 
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl mb-6 md:mb-8"
-            style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 'normal' }}
+          <motion.div 
+            className="mb-6 md:mb-8 flex justify-center items-center"
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
           >
-            <motion.span 
-              className="block relative"
-              style={{ 
-                fontFamily: "'Great Vibes', cursive",
-                fontWeight: 'normal',
-                color: '#8B7355',
-                letterSpacing: '0.02em',
-                WebkitTextStroke: '0.80px rgba(255,255,255,0.7)',
-                paintOrder: 'stroke fill',
-                textShadow: '0 0 8px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2)'
-              } as React.CSSProperties}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.15 }}
+              className="relative w-full flex justify-center hero-logo"
+              style={{
+                filter: logoFilter
+              }}
             >
-              <span style={{
-                fontFamily: "'Great Vibes', cursive",
-                fontWeight: 'normal',
-                fontStyle: 'normal',
-                display: 'inline-block',
-                letterSpacing: '0',
-                marginRight: '-0.08em',
-                WebkitTextStroke: '0.80px rgba(255,255,255,0.7)',
-                paintOrder: 'stroke fill',
-                textShadow: '0 0 8px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2)',
-                fontSize: '1em',
-                lineHeight: '1',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                textRendering: 'optimizeLegibility'
-              }}>N</span>
-              {t.hero.title.replace(/^N/, '')}
-            </motion.span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-sm sm:text-base md:text-lg font-serif italic mb-10 md:mb-16 max-w-md mx-auto leading-relaxed tracking-wide px-4 font-medium text-white/95 drop-shadow-md"
+              <div className="relative" style={{ width: 'clamp(300px, 50vw, 600px)', height: 'clamp(140px, 20vw, 280px)' }}>
+                <Image
+                  src="/images/logo/logoNativo.png"
+                  alt="Nativo Arte"
+                  fill
+                  className="object-contain"
+                  style={{ objectPosition: 'center' }}
+                  priority
+                  quality={90}
+                  sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 600px"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4 w-full mt-6 md:mt-8"
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-          >
-            {t.hero.subtitle}
-          </motion.p>
-        
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4 w-full"
-            initial={{ opacity: 0, y: 3 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.25 }}
           >
             <motion.div
               whileHover={{ scale: 1.005, y: -0.5 }}

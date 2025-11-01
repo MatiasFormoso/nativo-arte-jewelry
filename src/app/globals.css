@@ -128,10 +128,15 @@ body {
   #hero *,
   #hero img,
   #hero img * {
-    filter: none !important;
-    -webkit-filter: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Excepción: el logo del hero debe mantener sus filtros - más claro en mobile */
+  .hero-logo,
+  .hero-logo * {
+    filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+    -webkit-filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
   }
   
   /* Prevenir que el header afecte el hero */
@@ -189,10 +194,15 @@ body {
     #hero,
     #hero *,
     #hero img {
-      filter: none !important;
-      -webkit-filter: none !important;
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Excepción: el logo del hero debe mantener sus filtros - más claro en mobile */
+    .hero-logo,
+    .hero-logo * {
+      filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+      -webkit-filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
     }
   }
 
