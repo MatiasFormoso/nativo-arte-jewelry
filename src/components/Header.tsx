@@ -74,8 +74,13 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
     <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       showWhiteHeader 
         ? 'bg-[#F9F5EF]/95 md:backdrop-blur-md border-b border-[#8B7355]/15 shadow-sm' 
-        : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
-    }`} style={isMobile ? { 
+        : isMenuOpen
+          ? 'bg-black/30 backdrop-blur-lg border-b border-white/20'
+          : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
+    }`} style={isMobile && !showWhiteHeader && isMenuOpen ? { 
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)'
+    } : isMobile ? { 
       backdropFilter: 'none',
       WebkitBackdropFilter: 'none'
     } : {}}>
@@ -111,7 +116,21 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                Nativo Arte
+                <span style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontWeight: 'normal',
+                  fontStyle: 'normal',
+                  display: 'inline-block',
+                  letterSpacing: '0',
+                  marginRight: '-0.08em',
+                  WebkitTextStroke: showWhiteHeader ? 'none' : '0.3px rgba(255,255,255,0.7)',
+                  paintOrder: showWhiteHeader ? 'normal' : 'stroke fill',
+                  fontSize: '1em',
+                  lineHeight: '1',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  textRendering: 'optimizeLegibility'
+                }}>N</span>ativo Arte
               </motion.span>
             </Link>
           </motion.div>
@@ -214,11 +233,14 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
           className={`md:hidden absolute top-full left-0 right-0 shadow-lg transition-all duration-300 ${
             showWhiteHeader 
               ? 'bg-[#F9F5EF]/98 border-b border-[#8B7355]/10' 
-              : 'bg-black/20 md:backdrop-blur-sm border-b border-white/20'
+              : 'bg-black/30 backdrop-blur-lg border-b border-white/20'
           } ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
-          style={isMobile ? { backdropFilter: 'none', WebkitBackdropFilter: 'none' } : {}}
+          style={isMobile && !showWhiteHeader ? { 
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)'
+          } : isMobile ? { backdropFilter: 'none', WebkitBackdropFilter: 'none' } : {}}
         >
           <div className="px-4 py-6 space-y-2">
             {navigation.map((item) => (

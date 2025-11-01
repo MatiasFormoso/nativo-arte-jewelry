@@ -18,6 +18,8 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
         className="object-cover object-[75%_center] md:object-[70%_center]"
         quality={90}
         sizes="100vw"
+        loading="eager"
+        fetchPriority="high"
       />
       
       {/* Overlay simple sin efectos */}
@@ -64,7 +66,23 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.15 }}
             >
-              {t.hero.title}
+              <span style={{
+                fontFamily: "'Great Vibes', cursive",
+                fontWeight: 'normal',
+                fontStyle: 'normal',
+                display: 'inline-block',
+                letterSpacing: '0',
+                marginRight: '-0.08em',
+                WebkitTextStroke: '1.5px rgba(255,255,255,0.7)',
+                paintOrder: 'stroke fill',
+                textShadow: '0 0 8px rgba(255,255,255,0.4), 0 0 12px rgba(255,255,255,0.2)',
+                fontSize: '1em',
+                lineHeight: '1',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                textRendering: 'optimizeLegibility'
+              }}>N</span>
+              {t.hero.title.replace(/^N/, '')}
             </motion.span>
           </motion.h1>
           

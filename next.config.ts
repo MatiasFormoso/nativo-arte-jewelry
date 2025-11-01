@@ -8,9 +8,11 @@ const nextConfig: NextConfig = {
   compress: true,
   
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 30 : 0,
-    qualities: [75, 90, 100],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    qualities: [75, 85, 90, 100],
     dangerouslyAllowSVG: false,
   },
   

@@ -94,6 +94,8 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
                   fill
                   className="object-cover group-hover:scale-[1.01] transition-transform duration-200"
                   sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                  quality={90}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               </motion.div>

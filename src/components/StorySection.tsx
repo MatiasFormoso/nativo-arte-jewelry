@@ -46,6 +46,8 @@ export default function StorySection({ t, locale }: StorySectionProps) {
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={90}
+              loading="lazy"
             />
           </div>
         </div>
