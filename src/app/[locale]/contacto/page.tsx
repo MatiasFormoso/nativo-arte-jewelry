@@ -36,11 +36,11 @@ export default async function ContactPage({ params }: Props) {
           <div className="p-8 md:p-10 bg-white border border-[#D4AF37]/20">
             <h3 className="text-xl sm:text-2xl font-serif mb-6 text-[#1A1A1A] italic">Email</h3>
             <a 
-              href="mailto:contacto@nativoarte.com"
+              href="mailto:trujilloclaudia2@gmail.com"
               className="flex items-center space-x-3 text-[#1A1A1A]/70 hover:text-[#D4AF37] transition-colors"
             >
               <Mail className="w-5 h-5" />
-              <span>contacto@nativoarte.com</span>
+              <span>trujilloclaudia2@gmail.com</span>
             </a>
           </div>
         </div>

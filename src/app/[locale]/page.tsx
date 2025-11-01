@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import PhilosophySection from "@/components/PhilosophySection";
+import GallerySection from "@/components/GallerySection";
 import GlobalSection from "@/components/GlobalSection";
 import CTASection from "@/components/CTASection";
 
@@ -41,6 +42,7 @@ export default async function HomeByLocale({ params }: Props) {
       <HeroSection t={t} locale={locale} />
       <StorySection t={t} locale={locale} />
       <PhilosophySection t={t} locale={locale} />
+      <GallerySection t={t} locale={locale} />
       <GlobalSection t={t} locale={locale} />
       <CTASection t={t} locale={locale} />
     </>

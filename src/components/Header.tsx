@@ -16,6 +16,17 @@ type HeaderProps = {
 export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Alternativa 3: Usar Intersection Observer para detectar cuando salimos del hero
   useEffect(() => {
@@ -62,9 +73,12 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   return (
     <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       showWhiteHeader 
-        ? 'bg-white backdrop-blur-md border-b border-[#D4AF37]/10 shadow-sm' 
-        : 'bg-white/5 backdrop-blur-md border-b border-white/10'
-    }`}>
+        ? 'bg-[#F9F5EF]/95 md:backdrop-blur-md border-b border-[#8B7355]/15 shadow-sm' 
+        : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
+    }`} style={isMobile ? { 
+      backdropFilter: 'none',
+      WebkitBackdropFilter: 'none'
+    } : {}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
           <motion.div
@@ -74,18 +88,23 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
           >
             <Link
               href={`/${locale}`}
-              className="text-xl sm:text-2xl transition-all duration-200"
+              className="text-2xl sm:text-3xl md:text-4xl transition-all duration-300"
               style={{ 
                 fontFamily: "'Great Vibes', cursive",
-                color: showWhiteHeader ? '#1A1A1A' : '#FFFFFF'
-              }}
+                color: '#8B7355',
+                fontWeight: 'normal',
+                letterSpacing: '0.02em',
+                WebkitTextStroke: showWhiteHeader ? 'none' : '0.5px rgba(255,255,255,0.7)',
+                paintOrder: showWhiteHeader ? 'normal' : 'stroke fill',
+                textShadow: showWhiteHeader ? 'none' : '0 0 5px rgba(255,255,255,0.4), 0 0 9px rgba(255,255,255,0.2)'
+              } as React.CSSProperties}
               onMouseEnter={(e) => {
-                if (showWhiteHeader) {
-                  e.currentTarget.style.color = '#D4AF37';
-                }
+                e.currentTarget.style.color = '#9B8365';
+                e.currentTarget.style.transform = 'scale(1.02)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = showWhiteHeader ? '#1A1A1A' : '#FFFFFF';
+                e.currentTarget.style.color = '#8B7355';
+                e.currentTarget.style.transform = 'scale(1)';
               }}
             >
               <motion.span
@@ -113,12 +132,12 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               >
                 <Link
                   href={item.href}
-                  className={`transition-all duration-200 text-sm tracking-wide ${
+                  className={`transition-all duration-300 text-sm tracking-wide font-light ${
                     showWhiteHeader
-                      ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]'
-                      : 'text-white/80 hover:text-white'
+                      ? 'text-[#8B7355]/80 hover:text-[#8B7355]'
+                      : 'text-white/90 hover:text-white'
                   }`}
-                  style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
+                  style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}
                 >
                   <motion.span 
                     whileHover={{ y: -0.5 }}
@@ -134,22 +153,26 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               href="https://www.instagram.com/nativo_arte_jewelry/"
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 transition-all duration-200 ${
+              className={`p-2 transition-all duration-300 ${
                 showWhiteHeader
-                  ? 'text-[#1A1A1A]/70 hover:text-[#D4AF37]'
-                  : 'text-white/80 hover:text-white'
+                  ? 'text-[#8B7355]/70 hover:text-[#8B7355]'
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               <Instagram className="w-5 h-5" />
             </a>
             <a
               href={`/${locale}/contacto`}
-              className={`px-6 lg:px-8 py-2.5 text-sm tracking-wide transition-all duration-200 ${
+              className={`px-6 lg:px-8 py-2.5 text-sm tracking-[0.15em] uppercase transition-all duration-300 font-light ${
                 showWhiteHeader
-                  ? 'border border-[#D4AF37]/40 hover:border-[#D4AF37] text-[#1A1A1A] hover:text-[#D4AF37]'
-                  : 'border border-white/30 hover:border-white/60 text-white/90 hover:text-white'
+                  ? 'border border-[#8B7355]/50 hover:border-[#8B7355] bg-[#C9A85A]/8 hover:bg-[#C9A85A]/15 text-[#8B7355]'
+                  : 'border border-white/40 hover:border-white/70 text-white/95 hover:text-white md:backdrop-blur-sm'
               }`}
-              style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
+              style={{ 
+                fontFamily: "'Playfair Display', serif",
+                letterSpacing: '0.15em',
+                ...(isMobile ? { backdropFilter: 'none', WebkitBackdropFilter: 'none' } : {})
+              }}
             >
               Contactar
             </a>
@@ -157,28 +180,30 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
 
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg transition-colors hover:bg-gray-100"
+            className={`md:hidden p-2 rounded-lg transition-all duration-300 ${
+              showWhiteHeader ? 'hover:bg-[#8B7355]/10' : 'hover:bg-white/10'
+            }`}
             aria-label="Abrir menú"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span
                 className="block w-5 h-0.5 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
                   transform: isMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none'
                 }}
               />
               <span
                 className="block w-5 h-0.5 mt-1 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
                   opacity: isMenuOpen ? 0 : 1
                 }}
               />
               <span
                 className="block w-5 h-0.5 mt-1 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#1A1A1A' : '#FFFFFF',
+                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
                   transform: isMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none'
                 }}
               />
@@ -187,16 +212,17 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
         </div>
 
         <div
-          className={`md:hidden absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-[#F9F5EF]/98 shadow-lg border-b border-[#8B7355]/10 transition-all duration-300 ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
+          style={{ backdropFilter: 'none', WebkitBackdropFilter: 'none' }}
         >
           <div className="px-4 py-6 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 text-sm tracking-wide"
+                className="block text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light"
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -206,19 +232,19 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             
             <Link
               href={`/${locale}/contacto`}
-              className="block text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all duration-300 py-3 px-3 text-sm tracking-wide"
+              className="block text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light"
               style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
               onClick={() => setIsMenuOpen(false)}
             >
               Contactar
             </Link>
             
-            <div className="px-3 pt-4 border-t border-[#D4AF37]/10 flex items-center justify-between">
+            <div className="px-3 pt-4 border-t border-[#8B7355]/15 flex items-center justify-between">
               <a
                 href="https://www.instagram.com/nativo_arte_jewelry/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full text-[#1A1A1A]/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all"
+                className="p-3 rounded-full text-[#8B7355]/70 hover:text-[#8B7355] hover:bg-[#C9A85A]/10 transition-all duration-300"
               >
                 <Instagram className="w-5 h-5" />
               </a>

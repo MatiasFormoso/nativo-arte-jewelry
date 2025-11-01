@@ -9,8 +9,9 @@ const nextConfig: NextConfig = {
   
   images: {
     formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
+    minimumCacheTTL: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 30 : 0,
     qualities: [75, 90, 100],
+    dangerouslyAllowSVG: false,
   },
   
   async redirects() {

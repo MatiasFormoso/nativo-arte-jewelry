@@ -14,13 +14,35 @@
 
 :root {
   color-scheme: light;
-  /* Paleta de Colores Nativo Arte */
-  --primary: #D4AF37; /* Golden Antique */
-  --primary-dark: #b8941f;
-  --ivory: #F9F5EF; /* Ivory Beige */
-  --charcoal: #1A1A1A; /* Deep Charcoal */
-  --emerald: #1F3C2F; /* Emerald Green */
-  --gold-shadow: rgba(212, 175, 55, 0.3);
+  
+  /* Paleta de Colores Nativo Arte - Basada en Branding Real */
+  
+  /* Colores Base del Branding */
+  --ivory-base: #F9F5EF;           /* Fondo principal claro */
+  --ivory-warm: #F5F0E8;           /* Variación cálida del ivory */
+  --ivory-light: #FDFBF8;          /* Ivory muy claro para contrastes */
+  
+  /* Dorados Metálicos del Branding */
+  --gold-metallic: #D4AF37;         /* Dorado brillante principal */
+  --gold-metallic-bright: #E8C547; /* Dorado más brillante para acentos */
+  --gold-metallic-soft: #C9A85A;   /* Dorado suave para textos metálicos */
+  --gold-metallic-dark: #B8941F;   /* Dorado oscuro para hovers */
+  
+  /* Textos */
+  --charcoal: #1A1A1A;             /* Texto principal oscuro */
+  --charcoal-soft: #2A2A2A;        /* Texto secundario */
+  --bronze-text: #8B6914;          /* Texto dorado/bronce metálico (como en tarjeta) */
+  
+  /* Acentos y Decorativos */
+  --gold-accent-light: rgba(212, 175, 55, 0.15);  /* Acentos sutiles */
+  --gold-accent-medium: rgba(212, 175, 55, 0.30); /* Acentos medios */
+  --gold-accent-strong: rgba(212, 175, 55, 0.50);  /* Acentos fuertes */
+  
+  /* Compatibilidad con código existente */
+  --primary: var(--gold-metallic);
+  --primary-dark: var(--gold-metallic-dark);
+  --ivory: var(--ivory-base);
+  --gold-shadow: var(--gold-accent-medium);
 }
 
 * {
@@ -36,6 +58,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Great Vibes', cursive !important;
   font-weight: normal;
   letter-spacing: 0.02em;
+}
+
+/* Animación shimmer premium para textos dorados */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* Aplicar Great Vibes a títulos principales */
@@ -90,6 +122,24 @@ body {
     top: 0;
     left: 0;
   }
+  
+  /* Forzar que NO haya blur en mobile */
+  #hero,
+  #hero *,
+  #hero img,
+  #hero img * {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Prevenir que el header afecte el hero */
+  #site-nav,
+  #site-nav * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 
   html, body {
     width: 100%;
@@ -133,6 +183,17 @@ body {
     will-change: transform;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+  }
+  
+  @media (max-width: 768px) {
+    #hero,
+    #hero *,
+    #hero img {
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
   }
 
   @media (max-width: 768px) {
@@ -231,6 +292,22 @@ body {
     height: 100% !important;
     min-height: 100% !important;
     max-height: 100% !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    image-rendering: crisp-edges !important;
+    -webkit-font-smoothing: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  #hero section,
+  #hero > * {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
