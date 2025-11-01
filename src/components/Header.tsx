@@ -77,7 +77,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
         ? 'bg-[#F9F5EF]/95 md:backdrop-blur-md border-b border-[#8B7355]/15 shadow-sm' 
         : isMenuOpen
           ? 'bg-black/30 backdrop-blur-lg border-b border-white/20'
-          : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
+          : 'bg-black/5 md:backdrop-blur-md border-b border-white/10'
     }`} style={isMobile && !showWhiteHeader && isMenuOpen ? { 
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)'
@@ -198,21 +198,21 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               <span
                 className="block w-5 h-0.5 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
+                  backgroundColor: '#7A5F4A',
                   transform: isMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none'
                 }}
               />
               <span
                 className="block w-5 h-0.5 mt-1 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
+                  backgroundColor: '#7A5F4A',
                   opacity: isMenuOpen ? 0 : 1
                 }}
               />
               <span
                 className="block w-5 h-0.5 mt-1 transition-all duration-300"
                 style={{ 
-                  backgroundColor: showWhiteHeader ? '#8B7355' : '#FFFFFF',
+                  backgroundColor: '#7A5F4A',
                   transform: isMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none'
                 }}
               />
@@ -224,7 +224,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
           className={`md:hidden absolute top-full left-0 right-0 shadow-lg transition-all duration-300 ${
             showWhiteHeader 
               ? 'bg-[#F9F5EF]/98 border-b border-[#8B7355]/10' 
-              : 'bg-black/30 backdrop-blur-lg border-b border-white/20'
+              : 'bg-white/95 backdrop-blur-lg border-b border-[#7A5F4A]/20'
           } ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
@@ -241,7 +241,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light ${
                   showWhiteHeader
                     ? 'text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
-                    : 'text-white/95 hover:text-white hover:bg-white/10'
+                    : 'text-[#5A4535] hover:text-[#4A3829] hover:bg-[#8B7355]/10'
                 }`}
                 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
                 onClick={() => setIsMenuOpen(false)}
@@ -255,7 +255,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
               className={`block transition-all duration-300 py-3 px-3 text-sm tracking-wide font-light ${
                 showWhiteHeader
                   ? 'text-[#8B7355]/80 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
-                  : 'text-white/95 hover:text-white hover:bg-white/10'
+                  : 'text-[#5A4535] hover:text-[#4A3829] hover:bg-[#8B7355]/10'
               }`}
               style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}
               onClick={() => setIsMenuOpen(false)}
@@ -264,7 +264,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
             </Link>
             
             <div className={`px-3 pt-4 border-t flex items-center justify-between ${
-              showWhiteHeader ? 'border-[#8B7355]/15' : 'border-white/20'
+              showWhiteHeader ? 'border-[#8B7355]/15' : 'border-[#7A5F4A]/20'
             }`}>
               <a
                 href="https://www.instagram.com/nativo_arte_jewelry/"
@@ -273,7 +273,7 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
                 className={`p-3 rounded-full transition-all duration-300 ${
                   showWhiteHeader
                     ? 'text-[#8B7355]/70 hover:text-[#8B7355] hover:bg-[#C9A85A]/10'
-                    : 'text-white/90 hover:text-white hover:bg-white/10'
+                    : 'text-[#5A4535] hover:text-[#4A3829] hover:bg-[#8B7355]/10'
                 }`}
               >
                 <Instagram className="w-5 h-5" />

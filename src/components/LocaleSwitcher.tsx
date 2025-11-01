@@ -24,7 +24,7 @@ export default function LocaleSwitcher({ variant = 'desktop', showWhiteHeader = 
     if (variant === 'mobile') {
       return showWhiteHeader
         ? 'text-[#8B7355]/70 hover:text-[#8B7355]'
-        : 'text-white/90 hover:text-white';
+        : 'text-[#5A4535] hover:text-[#4A3829]';
     } else {
       // Desktop
       return showWhiteHeader
