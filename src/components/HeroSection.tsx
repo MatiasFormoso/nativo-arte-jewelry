@@ -28,15 +28,15 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
       <div className="absolute inset-0 flex items-center justify-center pt-20 pb-20">
         <div className="text-center px-6 max-w-6xl w-full relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
           >
             <motion.div 
               className="mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
             >
               <span className="text-sm sm:text-base font-serif italic text-[#8B7355] tracking-wide font-medium drop-shadow-lg">{t.hero.badge}</span>
             </motion.div>
@@ -45,9 +45,9 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
           <motion.h1 
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 md:mb-8"
             style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 'normal' }}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
           >
             <motion.span 
               className="block relative"
@@ -62,7 +62,7 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
               } as React.CSSProperties}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               {t.hero.title}
             </motion.span>
@@ -70,23 +70,23 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
           
           <motion.p 
             className="text-sm sm:text-base md:text-lg font-serif italic mb-10 md:mb-16 max-w-md mx-auto leading-relaxed tracking-wide px-4 font-medium text-white/95 drop-shadow-md"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.35 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
           >
             {t.hero.subtitle}
           </motion.p>
         
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4 w-full"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.4 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.25 }}
           >
             <motion.div
-              whileHover={{ scale: 1.01, y: -1 }}
-              whileTap={{ scale: 0.99 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              whileHover={{ scale: 1.005, y: -0.5 }}
+              whileTap={{ scale: 0.998 }}
+              transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="w-full sm:w-auto"
             >
               <Link
@@ -103,9 +103,9 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
               </Link>
             </motion.div>
             <motion.div
-              whileHover={{ scale: 1.01, y: -1 }}
-              whileTap={{ scale: 0.99 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              whileHover={{ scale: 1.005, y: -0.5 }}
+              whileTap={{ scale: 0.998 }}
+              transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="w-full sm:w-auto"
             >
               <Link

@@ -61,9 +61,9 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div 
           className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#8B6914] mb-6 italic font-medium">
             Inspiración
@@ -79,23 +79,23 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
             {getVisibleImages().map((item, idx) => (
               <motion.div
                 key={`${currentIndex}-${item.index}`}
-                initial={{ opacity: 0, x: idx === 0 ? -20 : idx === 3 ? 20 : 0, scale: 0.96 }}
+                initial={{ opacity: 0, x: idx === 0 ? -10 : idx === 3 ? 10 : 0, scale: 0.98 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ 
-                  duration: 0.4,
-                  ease: [0.25, 0.1, 0.25, 1],
-                  delay: idx * 0.05
+                  duration: 0.35,
+                  ease: [0.4, 0, 0.2, 1],
+                  delay: idx * 0.03
                 }}
-                className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#8B7355]/20 hover:border-[#8B7355]/40 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#8B7355]/20 hover:border-[#8B7355]/35 transition-all duration-200 shadow-md hover:shadow-md"
               >
                 <Image
                   src={item.src}
                   alt={`Modelo con joyas ${item.index + 1}`}
                   fill
-                  className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                  className="object-cover group-hover:scale-[1.01] transition-transform duration-200"
                   sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               </motion.div>
             ))}
           </div>

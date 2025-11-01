@@ -24,9 +24,9 @@ export default function GlobalSection({ t, locale }: GlobalSectionProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div 
           className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#8B6914] mb-6 italic font-medium">
             {t.global.title}
@@ -47,10 +47,10 @@ export default function GlobalSection({ t, locale }: GlobalSectionProps) {
           ].map((item, index) => (
             <motion.div 
               key={index}
-              className="text-center p-8 md:p-10 bg-[#F9F5EF]/50 border border-[#8B7355]/20 hover:border-[#8B7355]/40 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 }}
+              className="text-center p-8 md:p-10 bg-[#F9F5EF]/50 border border-[#8B7355]/20 hover:border-[#8B7355]/35 transition-all duration-200 hover:shadow-md hover:-translate-y-0.25 group"
+              initial={{ opacity: 0, y: 8 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1], delay: index * 0.05 }}
             >
               <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#8B7355] to-[#8B6914] group-hover:from-[#D4AF37] group-hover:to-[#B8941F] text-white rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-md transition-all duration-200">
                 <span className="text-xl md:text-2xl font-serif font-semibold">{item.icon}</span>

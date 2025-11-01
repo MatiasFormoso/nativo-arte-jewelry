@@ -24,9 +24,9 @@ export default function PhilosophySection({ t, locale }: PhilosophySectionProps)
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div 
           className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-6 italic text-[#8B6914] font-medium">
             {t.philosophy.title}
@@ -40,10 +40,10 @@ export default function PhilosophySection({ t, locale }: PhilosophySectionProps)
           {t.philosophy.items.map((item, index) => (
             <motion.div 
               key={index} 
-              className="p-8 md:p-10 bg-[#F9F5EF]/40 border-2 border-[#8B7355]/20 hover:border-[#8B7355]/40 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 }}
+              className="p-8 md:p-10 bg-[#F9F5EF]/40 border-2 border-[#8B7355]/20 hover:border-[#8B7355]/35 transition-all duration-200 hover:shadow-md hover:-translate-y-0.25 group"
+              initial={{ opacity: 0, y: 8 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1], delay: index * 0.05 }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-1 h-8 bg-gradient-to-b from-[#8B7355] to-[#8B6914] transition-all duration-200 group-hover:from-[#D4AF37] group-hover:to-[#B8941F]"></div>
