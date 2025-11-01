@@ -76,14 +76,14 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
       showWhiteHeader 
         ? 'bg-[#F9F5EF]/95 md:backdrop-blur-md border-b border-[#8B7355]/15 shadow-sm' 
         : isMenuOpen
-          ? 'bg-white/60 backdrop-blur-lg border-b border-white/30'
-          : 'bg-white/50 md:backdrop-blur-md border-b border-white/20'
+          ? 'bg-black/30 backdrop-blur-lg border-b border-white/20'
+          : 'bg-black/5 md:backdrop-blur-[0.5px] border-b border-white/10'
     }`} style={isMobile && !showWhiteHeader && isMenuOpen ? { 
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)'
-    } : isMobile && !showWhiteHeader ? { 
-      backdropFilter: 'blur(8px)',
-      WebkitBackdropFilter: 'blur(8px)'
+    } : isMobile ? { 
+      backdropFilter: 'none',
+      WebkitBackdropFilter: 'none'
     } : {}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">

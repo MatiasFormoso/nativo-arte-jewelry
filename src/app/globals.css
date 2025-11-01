@@ -135,8 +135,8 @@ body {
   /* Excepción: el logo del hero debe mantener sus filtros - más claro en mobile */
   .hero-logo,
   .hero-logo * {
-    filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
-    -webkit-filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+    filter: brightness(0.82) contrast(1.15) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+    -webkit-filter: brightness(0.82) contrast(1.15) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
   }
   
   /* Prevenir que el header afecte el hero */
@@ -201,8 +201,8 @@ body {
     /* Excepción: el logo del hero debe mantener sus filtros - más claro en mobile */
     .hero-logo,
     .hero-logo * {
-      filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
-      -webkit-filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+      filter: brightness(0.82) contrast(1.15) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
+      -webkit-filter: brightness(0.82) contrast(1.15) drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.2)) !important;
     }
   }
 
