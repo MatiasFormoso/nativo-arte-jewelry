@@ -105,7 +105,7 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  transition={transitions.normal}
+                  transition={transitions.default}
                   className="absolute inset-0"
                 >
                   <Image
@@ -122,11 +122,11 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
                   className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/20 via-transparent to-transparent"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
-                  transition={transitions.normal}
+                  transition={transitions.default}
                 />
                 <motion.div
                   className="absolute inset-0 border-2 border-transparent group-hover:border-[#D4AF37]/30"
-                  transition={transitions.normal}
+                  transition={transitions.default}
                 />
               </motion.div>
             ))}

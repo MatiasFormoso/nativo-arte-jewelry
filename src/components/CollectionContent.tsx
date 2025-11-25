@@ -137,7 +137,7 @@ export default function CollectionContent({ locale }: CollectionContentProps) {
                   >
                     <motion.div
                       whileHover={{ scale: 1.08 }}
-                      transition={transitions.normal}
+                      transition={transitions.default}
                       className="absolute inset-0"
                     >
                       <Image
@@ -154,7 +154,7 @@ export default function CollectionContent({ locale }: CollectionContentProps) {
                       className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/20 via-transparent to-transparent"
                       initial={{ opacity: 0 }}
                       whileHover={{ opacity: 1 }}
-                      transition={transitions.normal}
+                      transition={transitions.default}
                     />
                   </motion.div>
                 ))}
@@ -203,7 +203,7 @@ export default function CollectionContent({ locale }: CollectionContentProps) {
               className="absolute inset-0 bg-[#8B7355]/5"
               initial={{ x: '-100%' }}
               whileHover={{ x: '0%' }}
-              transition={transitions.normal}
+              transition={transitions.default}
             />
           </Link>
         </motion.div>
