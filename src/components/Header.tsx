@@ -67,9 +67,9 @@ export default function Header({ t, locale, isOnHero = true }: HeaderProps) {
   ];
 
   // Header debe ser blanco:
-  // - Si scrolleamos en cualquier página
-  // - Si estamos en una página sin hero
-  const showWhiteHeader = hasScrolled || !isOnHero;
+  // - En mobile: siempre blanco
+  // - En desktop: si scrolleamos en cualquier página o si estamos en una página sin hero
+  const showWhiteHeader = isMobile ? true : (hasScrolled || !isOnHero);
 
   return (
     <nav id="site-nav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

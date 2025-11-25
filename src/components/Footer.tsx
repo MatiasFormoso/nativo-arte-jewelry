@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram, Mail, Phone } from 'lucide-react';
 import type { Dict, Locale } from '@/i18n/config';
 
@@ -20,7 +21,18 @@ export default function Footer({ t, locale }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 mb-10 sm:mb-12">
           <div>
-            <h3 className="text-2xl sm:text-3xl font-script mb-4" style={{ color: '#8B7355' }}>Nativo Arte</h3>
+            <Link href={`/${locale}`} className="inline-block mb-4">
+              <Image
+                src="/images/logo/logoNativo.png"
+                alt="Nativo Arte"
+                width={200}
+                height={50}
+                className="h-12 sm:h-16 md:h-20 w-auto"
+                style={{ objectFit: 'contain', filter: 'brightness(0.66) contrast(1.3)' }}
+                priority={false}
+                quality={90}
+              />
+            </Link>
             <p className="text-sm sm:text-base text-[#8B7355]/70 leading-relaxed mb-6">
               {t.footer.description}
             </p>
@@ -88,8 +100,19 @@ export default function Footer({ t, locale }: FooterProps) {
         </div>
 
         <div className="border-t border-[#8B7355]/20 pt-6 sm:pt-8 text-center">
-          <p className="text-[#8B7355]/60 text-xs sm:text-sm">
+          <p className="text-[#8B7355]/60 text-xs sm:text-sm mb-2">
             {t.footer.rights}
+          </p>
+          <p className="text-[#8B7355]/60 text-xs sm:text-sm">
+            Soporte web por{' '}
+            <a 
+              href="https://modularsoluciones.com/en" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#8B7355]/80 hover:text-[#8B7355] transition-colors duration-300 underline"
+            >
+              Modular Soluciones
+            </a>
           </p>
         </div>
       </div>

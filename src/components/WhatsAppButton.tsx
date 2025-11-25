@@ -14,7 +14,12 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
 
   useEffect(() => {
     const heroElement = document.getElementById('hero');
-    if (!heroElement) return;
+    
+    // Si no hay hero, mostrar el botón inmediatamente
+    if (!heroElement) {
+      setHasScrolled(true);
+      return;
+    }
     
     const observer = new IntersectionObserver(
       (entries) => {

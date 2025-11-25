@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import type { Dict, Locale } from '@/i18n/config';
+import { easings, durations, delays, transitions, hoverEffects } from '@/lib/animations';
 
 type GallerySectionProps = { t: Dict; locale: Locale };
 
@@ -61,16 +62,26 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div 
           className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 8 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: durations.medium, ease: easings.smooth }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#8B6914] mb-6 italic font-medium">
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#8B6914] mb-6 italic font-medium"
+            initial={{ opacity: 0, y: 8 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: durations.medium, ease: easings.smooth, delay: delays.small }}
+          >
             Inspiración
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[#8B7355]/70 max-w-3xl mx-auto leading-relaxed px-4">
+          </motion.h2>
+          <motion.p 
+            className="text-base sm:text-lg md:text-xl text-[#8B7355]/70 max-w-3xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0, y: 8 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: durations.medium, ease: easings.smooth, delay: delays.small * 2 }}
+          >
             Descubre cómo nuestras piezas cobran vida en cada momento especial
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Carrusel */}
@@ -79,25 +90,44 @@ export default function GallerySection({ t, locale }: GallerySectionProps) {
             {getVisibleImages().map((item, idx) => (
               <motion.div
                 key={`${currentIndex}-${item.index}`}
-                initial={{ opacity: 0, x: idx === 0 ? -10 : idx === 3 ? 10 : 0, scale: 0.98 }}
+                initial={{ opacity: 0, x: idx === 0 ? -20 : idx === 3 ? 20 : 0, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ 
-                  duration: 0.35,
-                  ease: [0.4, 0, 0.2, 1],
-                  delay: idx * 0.03
+                  duration: durations.medium,
+                  ease: easings.smooth,
+                  delay: idx * delays.tiny
                 }}
-                className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#8B7355]/20 hover:border-[#8B7355]/35 transition-all duration-200 shadow-md hover:shadow-md"
+                className="flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-18px)] aspect-[3/4] relative overflow-hidden group border-2 border-[#8B7355]/20 hover:border-[#8B7355]/40 transition-all duration-300 shadow-md hover:shadow-xl"
+                whileHover={hoverEffects.lift}
+                style={{
+                  boxShadow: '0 4px 20px rgba(139,115,85,0.15)'
+                }}
               >
-                <Image
-                  src={item.src}
-                  alt={`Modelo con joyas ${item.index + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-[1.01] transition-transform duration-200"
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                  quality={90}
-                  loading="lazy"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={transitions.normal}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={item.src}
+                    alt={`Modelo con joyas ${item.index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                    quality={90}
+                    loading="lazy"
+                  />
+                </motion.div>
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/20 via-transparent to-transparent"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={transitions.normal}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#8B7355]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent group-hover:border-[#D4AF37]/30"
+                  transition={transitions.normal}
+                />
               </motion.div>
             ))}
           </div>
