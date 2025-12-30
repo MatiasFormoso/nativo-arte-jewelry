@@ -87,15 +87,27 @@ export default function HeroSection({ t, locale }: HeroSectionProps) {
                 whileHover={{ scale: 1.01 }}
                 transition={transitions.fast}
               >
+                {/* Logo para móvil - sin frase */}
+                <Image
+                  src="/images/logo/logoNativoSIN Frase.png"
+                  alt="Nativo Arte"
+                  fill
+                  className="object-contain block md:hidden"
+                  style={{ objectPosition: 'center' }}
+                  priority
+                  quality={90}
+                  sizes="(max-width: 768px) 300px, 400px"
+                />
+                {/* Logo para desktop - con frase */}
                 <Image
                   src="/images/logo/logoNativo.png"
                   alt="Nativo Arte"
                   fill
-                  className="object-contain"
+                  className="object-contain hidden md:block"
                   style={{ objectPosition: 'center' }}
                   priority
                   quality={90}
-                  sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 600px"
+                  sizes="(max-width: 1024px) 400px, 600px"
                 />
               </motion.div>
             </motion.div>
